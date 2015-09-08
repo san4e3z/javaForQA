@@ -68,7 +68,42 @@ public class TestBase {
 	    driver.get(baseUrl + "/addressbookv4.1.4/");
 	}
 	
-	
+	protected void returnToMainPage() {
+		driver.findElement(By.linkText("home page")).click();
+	}
+
+	protected void submitContactCreation() {
+		driver.findElement(By.name("submit")).click();
+	}
+
+	protected void fillContactForm(ContactData group) {
+		driver.findElement(By.name("firstname")).clear();
+	    driver.findElement(By.name("firstname")).sendKeys(group.contact_name);
+	    driver.findElement(By.name("lastname")).clear();
+	    driver.findElement(By.name("lastname")).sendKeys(group.lastname);
+	    driver.findElement(By.name("address")).clear();
+	    driver.findElement(By.name("address")).sendKeys(group.address);
+	    driver.findElement(By.name("home")).clear();
+	    driver.findElement(By.name("home")).sendKeys(group.home_number);
+	    driver.findElement(By.name("mobile")).clear();
+	    driver.findElement(By.name("mobile")).sendKeys(group.mobile_number);
+	    driver.findElement(By.name("work")).clear();
+	    driver.findElement(By.name("work")).sendKeys(group.work_number);
+	    driver.findElement(By.name("email")).clear();
+	    driver.findElement(By.name("email")).sendKeys(group.email1);
+	    driver.findElement(By.name("email2")).clear();
+	    driver.findElement(By.name("email2")).sendKeys(group.email2);
+	    new Select(driver.findElement(By.name("bday"))).selectByVisibleText(group.days);
+	    new Select(driver.findElement(By.name("bmonth"))).selectByVisibleText(group.months);
+	    driver.findElement(By.name("byear")).clear();
+	    driver.findElement(By.name("byear")).sendKeys(group.years);
+	}
+
+	protected void gotoContactsPage() {
+		driver.findElement(By.linkText("add new")).click();
+	}
+
+
 	private boolean isElementPresent(By by) {
 	    try {
 	      driver.findElement(by);
